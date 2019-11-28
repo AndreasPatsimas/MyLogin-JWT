@@ -3,7 +3,7 @@ package org.patsimas.loginjwt.utils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.patsimas.loginjwt.dto.MyUserDetails;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -14,7 +14,7 @@ import java.util.function.Function;
 @Service
 public class JwtUtil {
 
-    private String SECRET_KEY = "secret";
+    private String SECRET_KEY = "aris1914";
 
     public String extractUsername(String token){
         return extractClaim(token, Claims::getSubject);
@@ -39,7 +39,7 @@ public class JwtUtil {
         return extractExpiration(token).before(new Date());
     }
 
-    public String generateToken(MyUserDetails userDetails){
+    public String generateToken(UserDetails userDetails){
 
         Map<String, Object> claims = new HashMap<>();
 
@@ -47,13 +47,16 @@ public class JwtUtil {
     }
 
     private String createToken(Map<String, Object> claims, String subject){
-
+// subject the person who jas succesfully authenticated(username)
+// expiration 10 hours from now
+// sign the token by using an algorithm, secret key must sth more complicated in a prod application
+// compact -> end of build pattern
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
     }
 
-    public boolean validateToken(String token, MyUserDetails userDetails) {
+    public boolean validateToken(String token, UserDetails userDetails) {
 
         final String username = extractUsername(token);
 
