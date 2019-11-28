@@ -1,5 +1,6 @@
 package org.patsimas.loginjwt.config;
 
+import org.patsimas.loginjwt.enums.AuthorityType;
 import org.patsimas.loginjwt.filters.JwtRequestFilter;
 import org.patsimas.loginjwt.services.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/hello").permitAll()
                 .antMatchers("/authenticate").permitAll()
-                .antMatchers("/user").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/admin").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers("/user").hasAnyRole(AuthorityType.ROLE_USER.description(), AuthorityType.ROLE_ADMIN.description())
+                .antMatchers("/admin").hasRole(AuthorityType.ROLE_ADMIN.description()).anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS); // not creating a session
 

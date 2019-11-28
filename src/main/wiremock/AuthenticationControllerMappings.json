@@ -1,0 +1,43 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "/myLogin/authenticate",
+        "bodyPatterns" : [{
+          "equalToJson": {
+            "username" : "andreas",
+            "password" : "aris1914"
+          }
+        }]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "jwt": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmRyZWFzIiwiZXhwIjoxNTc0OTg3MDA1LCJpYXQiOjE1NzQ5NTEwMDV9.9-QWl2GNuGY2I7478olim7z3AOKOdo60UacgbLYqvfE"
+        }
+      }
+    },
+
+    {
+      "request": {
+        "method": "POST",
+        "url": "/myLogin/authenticate",
+        "bodyPatterns" : [{
+          "equalToJson": {
+            "username" : "andreas",
+            "password" : "aris191"
+          }
+        }]
+      },
+      "response": {
+        "status": 403,
+        "jsonBody": {
+          "errorCode": 403,
+          "message": "Incorrect username or password"
+        }
+      }
+    }
+
+  ]
+}
