@@ -3,6 +3,7 @@ package org.patsimas.loginjwt.convert;
 import org.patsimas.loginjwt.domain.Authority;
 import org.patsimas.loginjwt.domain.User;
 import org.patsimas.loginjwt.dto.UserDto;
+import org.patsimas.loginjwt.enums.AuthorityType;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -33,7 +34,7 @@ public class UserDtoToUserConverter implements Converter<UserDto, User> {
 
         authorities.add(Authority.builder()
                 .id(1L)
-                .description("ROLE_USER")
+                .description(AuthorityType.ROLE_USER.description())
                 .build());
 
         return authorities;

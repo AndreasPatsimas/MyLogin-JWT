@@ -38,8 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/hello").permitAll()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/authenticate").permitAll()
-                .antMatchers("/user").hasAnyRole(AuthorityType.ROLE_USER.description(), AuthorityType.ROLE_ADMIN.description())
-                .antMatchers("/admin").hasRole(AuthorityType.ROLE_ADMIN.description()).anyRequest().authenticated()
+                .antMatchers("/user").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/admin").hasRole("ADMIN").anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS); // not creating a session
 

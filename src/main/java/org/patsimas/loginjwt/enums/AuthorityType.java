@@ -2,8 +2,8 @@ package org.patsimas.loginjwt.enums;
 
 public enum AuthorityType {
 
-    ROLE_USER(1, "USER"),
-    ROLE_ADMIN(2, "ADMIN");
+    ROLE_USER(1, "ROLE_USER"),
+    ROLE_ADMIN(2, "ROLE_ADMIN");
 
     private final int code;
 
