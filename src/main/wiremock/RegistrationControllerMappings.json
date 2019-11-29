@@ -1,0 +1,21 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "/myLogin/register",
+        "bodyPatterns" : [{
+          "equalToJson": {
+            "username" : "tasos",
+            "password" : "terma",
+            "email": "tasos@gmail.com"
+          }
+        }]
+      },
+      "response": {
+        "status": 201
+      }
+    }
+
+  ]
+}

@@ -55,7 +55,7 @@ public class AuthenticationControllerTest extends BasicWiremockTest {
                         .content(asJsonString(authenticationRequest))
                         .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andDo(print())
-                .andExpect(status().isForbidden())
+                .andExpect(status().isNotAcceptable())
                 .andExpect(content().contentType("application/json"));
     }
 }

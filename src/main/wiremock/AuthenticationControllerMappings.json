@@ -31,9 +31,10 @@
         }]
       },
       "response": {
-        "status": 403,
+        "status": 406,
         "jsonBody": {
-          "errorCode": 403,
+          "errorCode": 406,
+          "status": "NOT_ACCEPTABLE",
           "message": "Incorrect username or password"
         }
       }

@@ -19,6 +19,7 @@ public class UserToUserDtoConverter implements Converter<User, UserDto> {
 				.username(user.getUsername())
 				.password(user.getPassword())
 				.active(user.getActive() == 1? true : false)
+				.email(user.getEmail())
 				.authorities(buildAuthorities(user))
 				.build();
 	}

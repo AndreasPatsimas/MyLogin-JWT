@@ -31,10 +31,11 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationErrorResponse> exceptionHandler(Exception ex) {
 
         AuthenticationErrorResponse authenticationErrorResponse = AuthenticationErrorResponse.builder()
-                .errorCode(HttpStatus.FORBIDDEN.value())
+                .errorCode(HttpStatus.NOT_ACCEPTABLE.value())
+                .status(HttpStatus.NOT_ACCEPTABLE)
                 .message(ex.getMessage())
                 .build();
 
-        return new ResponseEntity<AuthenticationErrorResponse>(authenticationErrorResponse, HttpStatus.FORBIDDEN);
+        return new ResponseEntity<AuthenticationErrorResponse>(authenticationErrorResponse, HttpStatus.NOT_ACCEPTABLE);
     }
 }
