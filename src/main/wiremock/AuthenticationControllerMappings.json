@@ -38,6 +38,46 @@
           "message": "Incorrect username or password"
         }
       }
+    },
+
+    {
+      "request": {
+        "method": "POST",
+        "url": "/myLogin/changePassword",
+        "bodyPatterns" : [{
+          "equalToJson": {
+            "username" : "andreas",
+            "oldPassword" : "aris1914",
+            "newPassword" : "aris"
+          }
+        }]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "changePasswordStatus":"SUCCEEDED"
+        }
+      }
+    },
+
+    {
+      "request": {
+        "method": "POST",
+        "url": "/myLogin/forgotPassword",
+        "bodyPatterns" : [{
+          "equalToJson": {
+            "username" : "andreas",
+            "email":"andreas-patsim@hotmail.com"
+          }
+        }]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "forgotPasswordStatus":"USERNAME_VERIFIED",
+          "resetKeyPassword":"e1aa7ede-7775-4fbe-8eab-cf4d4b95cb8d"
+        }
+      }
     }
 
   ]

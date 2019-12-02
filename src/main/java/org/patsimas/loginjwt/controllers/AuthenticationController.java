@@ -1,7 +1,8 @@
 package org.patsimas.loginjwt.controllers;
 
 import lombok.extern.slf4j.Slf4j;
-import org.patsimas.loginjwt.dto.AuthenticationRequest;
+import org.patsimas.loginjwt.dto.*;
+import org.patsimas.loginjwt.enums.AuthenticationStatus;
 import org.patsimas.loginjwt.exceptions.AuthenticationErrorResponse;
 import org.patsimas.loginjwt.exceptions.AuthenticationFailedException;
 import org.patsimas.loginjwt.services.AuthenticationService;
@@ -27,6 +28,22 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.authenticate(authenticationRequest));
     }
 
+    @PostMapping(value = "/changePassword", produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
+            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ChangePasswordResponse changePassword(@RequestBody ChangePasswordRequest request) throws Exception {
+        log.info("Change password process started for user {}", request.getUsername());
+
+        return authenticationService.changePassword(request);
+    }
+
+    @PostMapping(value = "/forgotPassword", produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
+            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ForgotPasswordResponse forgotPassword(@RequestBody ForgotPasswordRequest request) throws Exception {
+        log.info("Forgot password process started fo user{} ", request.getUsername());
+
+        return authenticationService.forgotPassword(request);
+    }
+
     @ExceptionHandler(AuthenticationFailedException.class)
     public ResponseEntity<AuthenticationErrorResponse> exceptionHandler(Exception ex) {
 
@@ -34,6 +51,7 @@ public class AuthenticationController {
                 .errorCode(HttpStatus.NOT_ACCEPTABLE.value())
                 .status(HttpStatus.NOT_ACCEPTABLE)
                 .message(ex.getMessage())
+                .authenticationStatus(AuthenticationStatus.AUTHENTICATION_FAILED)
                 .build();
 
         return new ResponseEntity<AuthenticationErrorResponse>(authenticationErrorResponse, HttpStatus.NOT_ACCEPTABLE);

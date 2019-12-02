@@ -1,6 +1,7 @@
 package org.patsimas.loginjwt.exceptions;
 
 import lombok.*;
+import org.patsimas.loginjwt.enums.AuthenticationStatus;
 import org.springframework.http.HttpStatus;
 
 @Data
@@ -14,4 +15,6 @@ public class AuthenticationErrorResponse {
     private HttpStatus status;
 
     private String message;
+
+    private AuthenticationStatus authenticationStatus;
 }
