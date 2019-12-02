@@ -35,37 +35,5 @@ public class MailServiceImpl implements MailService {
 
         log.info("Sending email message completed");
     }
-
-    @Override
-    public void sendMessageUsingTemplate(String from, String to, String subject, SimpleMailMessage template, String... templateArgs) {
-
-        log.info("Sending email message using template to {} started", to);
-
-        if (template.getText() != null) {
-            String text = String.format(template.getText(), templateArgs);
-            sendMessage(from, to, subject, text);
-        }
-
-        log.info("Sending email message using template completed");
-    }
-
-    @Override
-    public void sendMessageWithAttachment(String from, String to, String subject, String text, String pathToAttachment) throws MessagingException {
-
-        MimeMessage message = emailSender.createMimeMessage();
-        // -> create a multipart message
-        MimeMessageHelper helper = new MimeMessageHelper(message, true);
-
-        helper.setFrom(from);
-        helper.setTo(to);
-        helper.setSubject(subject);
-        helper.setText(text);
-
-        FileSystemResource file = new FileSystemResource(new File(pathToAttachment));
-        helper.addAttachment("Attachment", file);
-
-        emailSender.send(message);
-
-        log.info("Sending email message with attachment completed");
-    }
+    
 }

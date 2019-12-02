@@ -11,8 +11,4 @@ public interface MailService {
 
     void sendMessage(String from, String to, String subject, String text) throws MailException;
 
-    void sendMessageUsingTemplate(String from, String to, String subject, SimpleMailMessage template, String... templateArgs);
-
-    void sendMessageWithAttachment(String from, String to, String subject, String text, String pathToAttachment)
-            throws MessagingException;
 }
