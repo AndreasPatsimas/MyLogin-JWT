@@ -1,6 +1,5 @@
 package org.patsimas.loginjwt.config;
 
-import org.patsimas.loginjwt.enums.AuthorityType;
 import org.patsimas.loginjwt.filters.JwtRequestFilter;
 import org.patsimas.loginjwt.services.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,3 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return  new BCryptPasswordEncoder();
     } /* https://www.browserling.com/tools/bcrypt*/
 }
+
+/*
+* https://www.callicoder.com/spring-boot-spring-security-jwt-mysql-react-app-part-1/
+* */
